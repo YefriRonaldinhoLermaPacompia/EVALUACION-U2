@@ -318,7 +318,7 @@ public class ProductoController {
         txtPUnitOld.setText(producto.getPuOld().toString());
         txtUtilidad.setText(producto.getUtilidad().toString());
         txtStock.setText(producto.getStock().toString());
-        txtStockOld.setText(producto.getStockOld().toString());
+        txtStockOld.setText(producto    .getStockOld().toString());
 // Seleccionar el ítem en cbxMarca según el ID de Marca
         cbxMarca.getSelectionModel().select(
                 cbxMarca.getItems().stream()
@@ -343,5 +343,6 @@ public class ProductoController {
         idProductoCE=producto.getIdProducto();
         limpiarError();
     }
+
 
 }
