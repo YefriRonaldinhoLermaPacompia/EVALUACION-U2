@@ -22,10 +22,13 @@ public class UsuarioService {
 
     public Usuario update(Usuario to, Long id) {
         try {
-            Usuario toe = repo.findById(id).orElse(null);
-            if (toe != null) {
-                toe.setClave(to.getClave());
-                return repo.save(toe);
+            Usuario usuario = repo.findById(id).orElse(null);
+            if (usuario != null) {
+                usuario.setClave(to.getClave());
+                usuario.setEstado(to.getEstado());
+                usuario.setIdPerfil(to.getIdPerfil());
+                usuario.setUser(to.getUser());
+                return repo.save(usuario);
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
