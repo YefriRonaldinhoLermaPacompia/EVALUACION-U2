@@ -13,33 +13,28 @@ public class ClienteService {
     @Autowired
     ClienteRepository repo;
 
-    public Cliente save(Cliente to) {
-        return repo.save(to);
+    public Cliente save(Cliente cliente) {
+        return repo.save(cliente);
     }
 
     public List<Cliente> list() {
         return repo.findAll();
     }
 
-    // Actualizar un cliente por ID
-    public Cliente update(Cliente to, String dniruc) {
-        try {
-            Cliente toe = repo.findById(dniruc).orElse(null);
-            if (toe != null) {
-                toe.setNombres(to.getNombres());
-                return repo.save(toe);
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+    public Cliente update(Cliente cliente, String dniruc) {
+        Cliente clienteExistente = repo.findById(dniruc).orElse(null);
+        if (clienteExistente != null) {
+            clienteExistente.setNombres(cliente.getNombres());
+            clienteExistente.setRepLegal(cliente.getRepLegal());
+            clienteExistente.setTipoDocumento(cliente.getTipoDocumento());
+            return repo.save(clienteExistente);
         }
         return null;
     }
 
-
     public void delete(String dniruc) {
         repo.deleteById(dniruc);
     }
-
 
     public Cliente searchById(String dniruc) {
         return repo.findById(dniruc).orElse(null);
